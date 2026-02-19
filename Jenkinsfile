@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PRIVATE_SERVER = "ubuntu@10.0.2.17"   // Private EC2
+        PRIVATE_SERVER = "ubuntu@10.0.2.121"   // Private EC2
         SSH_KEY_ID = "private-server-key"
         APP_IMAGE = "node-ci-cd-demo:latest"
     }
