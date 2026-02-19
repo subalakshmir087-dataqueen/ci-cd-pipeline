@@ -23,12 +23,15 @@ pipeline {
         }
 
         stage('Push Image to Docker Hub') {
-            steps {
-                withDockerRegistry([], 'dockerhub-credentials') {
-                    sh 'docker push $APP_IMAGE'
-                }
+    steps {
+        script {
+            docker.withRegistry('', 'dockerhub-credentials') {
+                docker.image('subicloudevops/node-ci-cd-demo:latest').push()
             }
         }
+    }
+}
+
 
         stage('Deploy to Private Server') {
             steps {
