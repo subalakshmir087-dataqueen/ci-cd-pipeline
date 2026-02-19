@@ -34,18 +34,18 @@ pipeline {
 
 
         stage('Deploy to Private Server') {
-            steps {
-                sshagent([env.SSH_KEY_ID]) {
-                    sh '''
-                    ssh -o StrictHostKeyChecking=yes $PRIVATE_SERVER << EOF
-                    docker stop node-app || true
-                    docker rm node-app || true
-                    docker pull $APP_IMAGE
-                    docker run -d -p 80:3000 --name node-app $APP_IMAGE
-                    EOF
-                    '''
-                }
-            }
+    steps {
+        sshagent(['ubuntu']) {
+            sh """
+            ssh -o StrictHostKeyChecking=no ubuntu@10.0.2.121 '
+            docker stop node-app || true &&
+            docker rm node-app || true &&
+            docker pull subicloudevops/node-ci-cd-demo:latest &&
+            docker run -d -p 80:3000 --name node-app subicloudevops/node-ci-cd-demo:latest
+            '
+            """
         }
+    }
+}
     }
 }
