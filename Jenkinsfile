@@ -35,7 +35,7 @@ pipeline {
 
         stage('Deploy to Private Server') {
     steps {
-        sshagent(['ubuntu']) {
+        sshagent(['private-server-key']) {
             sh """
             ssh -o StrictHostKeyChecking=no ubuntu@10.0.2.121 '
             docker stop node-app || true &&
