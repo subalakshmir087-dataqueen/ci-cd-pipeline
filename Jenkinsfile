@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'git@github.com:https:subalakshmir087-dataqueen/ci-cd-pipeline.git'
+                git branch: 'main', url: 'git@github.com:subalakshmir087-dataqueen/ci-cd-pipeline.git'
             }
         }
         stage('Build Docker Image') {
@@ -31,4 +31,3 @@ pipeline {
         }
     }
 }
-
