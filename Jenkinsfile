@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sshagent([env.SSH_KEY_ID]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no $PRIVATE_SERVER '
+                        ssh -o StrictHostKeyChecking=yes $PRIVATE_SERVER '
                         docker stop node-app || true
                         docker rm node-app || true
                         docker run -d -p 80:3000 --name node-app $APP_IMAGE
